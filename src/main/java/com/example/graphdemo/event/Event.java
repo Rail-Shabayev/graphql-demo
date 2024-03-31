@@ -1,4 +1,4 @@
 package com.example.graphdemo.event;
 
-public record Event() {
+public record Event(Integer id, String name) {
 }
