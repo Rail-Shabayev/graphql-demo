@@ -13,4 +13,11 @@ type Event {
     cfpEndDate: Date!
     location: String
     website: Url
+    sessions: [Session]
+}
+
+type Session {
+    id: ID!
+    title: String!
+    description: String!
 }
