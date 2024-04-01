@@ -1,4 +1,4 @@
-package com.example.graphdemo;
+package com.example.graphdemo.config;
 
 import graphql.scalars.ExtendedScalars;
 import org.slf4j.Logger;

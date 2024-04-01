@@ -1,38 +1,32 @@
 package com.example.graphdemo.event;
 
 import com.example.graphdemo.session.Session;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.LocalDate.*;
+import java.util.Optional;
 
 @Controller
 public class EventController {
-    private final List<Event> events = new ArrayList<>();
+    private final EventRepository eventRepository;
 
-    public EventController() {
-        var event = new Event(1,
-                "some event name",
-                "description",
-                now(),
-                now(),
-                now(),
-                now(),
-                "location",
-                "http://localhost:8080/graphiql?path=/graphql");
-        events.add(event);
+    public EventController(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
     }
+
 
     @QueryMapping
     public List<Event> events() {
-        return events;
+        return eventRepository.findAll();
     }
 
+    @QueryMapping
+    Optional<Event> event(@Argument Integer id) {
+        return eventRepository.findById(id);
+    }
     @SchemaMapping
     public List<Session> sessions(Event event) {
         System.out.println("Fetching sessions for Event: " + events.toString());
