@@ -3,6 +3,8 @@ scalar Url @specifiedBy(url: "https://www.w3.org/Addressing/URL/url-spec.txt")
 type Query {
     events: [Event]
     event(id: ID!): Event
+    sessions: [Session]
+    session(id: ID!): Session
     speakers: [Speaker]
     speaker(id: ID!): Speaker
 }

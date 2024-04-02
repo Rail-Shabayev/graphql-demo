@@ -1,6 +1,9 @@
 package com.example.graphdemo.session;
 
+import com.example.graphdemo.event.Event;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Session {
@@ -12,7 +15,10 @@ public class Session {
     private String description;
     @Enumerated(EnumType.STRING)
     private Level level;
-
+    @OneToMany
+    private Set<Tag> tags;
+    @ManyToMany
+    private Event event;
     public Session() {
     }
     public Session(Integer id, String title, String description, Level level) {

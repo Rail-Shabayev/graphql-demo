@@ -1,9 +1,14 @@
 package com.example.graphdemo.event;
 
+import com.example.graphdemo.session.Session;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Event {
@@ -15,7 +20,8 @@ public class Event {
     private LocalDate endDate;
     private LocalDate cfpStartDate;
     private LocalDate cfpEndDate;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    private Set<Session> sessions = new HashSet<>();
     @Override
     public String toString() {
         return "Event{" +
