@@ -17,15 +17,18 @@ public class Session {
     private Level level;
     @OneToMany
     private Set<Tag> tags;
-    @ManyToMany
+    @ManyToOne
     private Event event;
     public Session() {
     }
-    public Session(Integer id, String title, String description, Level level) {
+
+    public Session(Integer id, String title, String description, Level level, Set<Tag> tags, Event event) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.level = level;
+        this.tags = tags;
+        this.event = event;
     }
 
     @Override
